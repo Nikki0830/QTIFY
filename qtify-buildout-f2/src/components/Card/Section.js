@@ -5,7 +5,7 @@ import Card from './Card';
 import Carousel from '../Carousel/Carousel';
 import './Section.css';
 
-const Section = ({ title, apiEndpoint }) => {
+const Section = ({ title, apiEndpoint,children }) => {
   const [albums, setAlbums] = useState([]);
   const [collapsed, setCollapsed] = useState(false);
 
@@ -23,6 +23,7 @@ const Section = ({ title, apiEndpoint }) => {
     <div className="section">
       <div className="section-header">
         <h2>{title}</h2>
+    
         <button className="collapse-btn" onClick={toggleCollapse}>
           {collapsed ? 'Show All' : 'Collapse'}
         </button>
@@ -37,6 +38,7 @@ const Section = ({ title, apiEndpoint }) => {
           ))}
         </div>
       )}
+      {children}
     </div>
   );
 };
