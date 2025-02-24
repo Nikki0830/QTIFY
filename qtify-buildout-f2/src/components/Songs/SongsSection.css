@@ -1,0 +1,23 @@
+/* SongsSection.css */
+.songs-section {
+    padding: 20px;
+  }
+  
+  .genre-tabs {
+    margin-bottom: 20px;
+  }
+  
+  .genre-tabs .MuiTab-root {
+    text-transform: none;
+    font-weight: bold;
+  }
+  
+  .genre-tabs .Mui-selected {
+    color: #ff5733;
+  }
+  
+  /* Carousel Styling */
+  .carousel {
+    display: flex;
+    overflow-x: auto;
+  }
