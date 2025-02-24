@@ -9,6 +9,7 @@ function SongsSection() {
   const [genres, setGenres] = useState([]);
   const [songs, setSongs] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState("All");
+  const [collapsed, setCollapsed] = useState(false); // To toggle the show all functionality
 
   // Fetch genres
   useEffect(() => {
@@ -52,6 +53,10 @@ function SongsSection() {
     (song) => selectedGenre === "All" || song.genre === selectedGenre
   );
 
+  const toggleCollapse = () => {
+    setCollapsed(!collapsed); // Toggle show all or collapse
+  };
+
   return (
     <Section title="Songs" apiEndpoint="https://qtify-backend-labs.crio.do/songs">
       <Tabs
@@ -64,8 +69,15 @@ function SongsSection() {
         ))}
       </Tabs>
 
+      <div className="section-header">
+        <button className="collapse-btn" onClick={toggleCollapse}>
+          {collapsed ? "Show All" : "Collapse"}
+        </button>
+      </div>
+
       <div className="grid">
-        {filteredSongs.map((song) => (
+        {/* Display songs in grid */}
+        {(collapsed ? filteredSongs.slice(0, 5) : filteredSongs).map((song) => (
           <div className="song-card" key={song.id}>
             <img src={song.image} alt={song.title} />
             <h3>{song.title}</h3>
@@ -79,3 +91,4 @@ function SongsSection() {
 }
 
 export default SongsSection;
+
