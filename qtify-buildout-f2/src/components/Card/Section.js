@@ -5,41 +5,46 @@ import Carousel from '../Carousel/Carousel';
 import './Section.css';
 
 const Section = ({ title, apiEndpoint, children }) => {
-  const [albums, setAlbums] = useState([]);
+  const [items, setItems] = useState([]);
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     Axios.get(apiEndpoint)
-      .then((response) => setAlbums(response.data))
-      .catch((error) => console.error('Error fetching data:', error));
+      .then((response) => {
+        if (Array.isArray(response.data)) {
+          setItems(response.data);
+        } else {
+          console.error("Unexpected API response:", response.data);
+          setItems([]); // Ensure it's always an array
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+        setItems([]); // Prevent undefined errors
+      });
   }, [apiEndpoint]);
-
-  const toggleCollapse = () => {
-    setCollapsed(!collapsed);
-  };
 
   return (
     <div className="section">
       <div className="section-header">
         <h2>{title}</h2>
-    
-        {/* Add data-testid for Cypress to easily target */}
         <button 
-          className="collapse-btn" 
-          onClick={toggleCollapse}
-          data-testid="collapse-btn"  
+          className="show-all-btn"
+          onClick={() => setCollapsed(!collapsed)}
         >
-          {collapsed ? 'Show All' : 'Collapse'}
+          {collapsed ? 'Collapse' : 'Show All'}
         </button>
       </div>
 
       {collapsed ? (
-        <Carousel items={albums} />
+        <Carousel items={items} />
       ) : (
         <div className="grid">
-          {albums.map((album) => (
-            <Card key={album.id} album={album} />
-          ))}
+          {items.length > 0 ? (
+            items.map((item) => <Card key={item.id} album={item} />)
+          ) : (
+            <p className="no-data">No data available</p>
+          )}
         </div>
       )}
       {children}
@@ -48,4 +53,6 @@ const Section = ({ title, apiEndpoint, children }) => {
 };
 
 export default Section;
+
+
 
