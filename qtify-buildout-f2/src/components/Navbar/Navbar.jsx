@@ -1,25 +1,28 @@
 import React from "react";
-// import { Link } from "react-router-dom";
-import Button from "../Button/Button";
-import Logo from "../Logo/Logo";
-// import Search from "../Search/Search";
-import styles from "./Navbar.module.css";
+import "./NavBar.css";
+import logoImg from './../../assets/logoImg.png';
 
-function Navbar({ searchData }) {
+
+function NavBar() {
   return (
-    <nav className={styles.navbar}>
-      {/* <Link to="/">
-        <Logo />
-      </Link> */}
-      <Logo/>
-      {/* <Search
-        placeholder="Search a song of your choice"
-        searchData={searchData}
-      /> */}
-      <Button>Give Feedback</Button>
-     
+    <nav className="navbarContainer">
+      <img 
+        src={logoImg} 
+        alt="logo" 
+        className="logo"
+      />
+      
+      <input 
+        type="text"
+        className="search-input"
+        placeholder="Search a song"
+      />
+
+      <button className="feedback-button">
+        Give Feedback
+      </button>
     </nav>
   );
 }
 
-export default Navbar;
+export default NavBar;

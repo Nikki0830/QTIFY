@@ -1,0 +1,31 @@
+.navbarContainer {
+  background-color: #34C94B;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 65px;
+  padding: 0 10px;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+  margin: 12.5px 20px;
+}
+
+.search-input {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  width: 200px;
+}
+
+.feedback-button {
+  background-color: black;
+  color: #34C94B;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}

@@ -1,13 +1,13 @@
 
-import './App.css';
-import Hero from './components/Hero/Hero';
-import Navbar from './components/Navbar/Navbar';
+import React from "react";
+import NavBar from "./components/Navbar/NavBar";
+import Hero from "./components/Hero/Hero";
 
 function App() {
   return (
     <div className="App">
-    <Navbar/>
-    <Hero/>
+      <NavBar/>
+      <Hero/>
     </div>
   );
 }
