@@ -7,9 +7,12 @@ import Section from "./components/Card/Section";
 function App() {
   return (
     <div className="App">
-     <NavBar/>
+      <NavBar />
       <Hero />
-      <Section title="Top Albums" />
+      <Section
+        title="Top Albums"
+        apiEndpoint="https://qtify-backend-labs.crio.do/albums/top"
+      />
     </div>
   );
 }

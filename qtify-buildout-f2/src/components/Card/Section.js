@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Card from './Card';
-import './Section.css'; // For styling the Section component
+import './Section.css';
 
-const Section = ({ title }) => {
+const Section = ({ title, apiEndpoint }) => {
   const [albums, setAlbums] = useState([]);
   const [collapsed, setCollapsed] = useState(false);
 
+  // Fetch data from API
   useEffect(() => {
-    // Fetching album data from the API
-    Axios.get('https://qtify-backend-labs.crio.do/albums/top')
+    Axios.get(apiEndpoint)
       .then((response) => setAlbums(response.data))
       .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+  }, [apiEndpoint]);
 
+  // Toggle Collapse State
   const toggleCollapse = () => {
     setCollapsed(!collapsed);
   };
@@ -26,6 +27,7 @@ const Section = ({ title }) => {
           {collapsed ? 'Show All' : 'Collapse'}
         </button>
       </div>
+
       {!collapsed && (
         <div className="grid">
           {albums.map((album) => (
