@@ -1,5 +1,5 @@
 .section {
-  margin: 20px;
+  margin: 20px 0;
 }
 
 .section-header {
@@ -14,17 +14,13 @@
   color: white;
   border: none;
   padding: 5px 10px;
-  border-radius: 5px;
   cursor: pointer;
-}
-
-.collapse-btn:hover {
-  background-color: #0056b3;
+  border-radius: 5px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
