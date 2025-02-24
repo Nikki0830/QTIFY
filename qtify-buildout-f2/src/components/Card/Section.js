@@ -1,11 +1,10 @@
-// src/components/Section.js
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Card from './Card';
 import Carousel from '../Carousel/Carousel';
 import './Section.css';
 
-const Section = ({ title, apiEndpoint,children }) => {
+const Section = ({ title, apiEndpoint, children }) => {
   const [albums, setAlbums] = useState([]);
   const [collapsed, setCollapsed] = useState(false);
 
@@ -24,7 +23,12 @@ const Section = ({ title, apiEndpoint,children }) => {
       <div className="section-header">
         <h2>{title}</h2>
     
-        <button className="collapse-btn" onClick={toggleCollapse}>
+        {/* Add data-testid for Cypress to easily target */}
+        <button 
+          className="collapse-btn" 
+          onClick={toggleCollapse}
+          data-testid="collapse-btn"  
+        >
           {collapsed ? 'Show All' : 'Collapse'}
         </button>
       </div>
@@ -44,3 +48,4 @@ const Section = ({ title, apiEndpoint,children }) => {
 };
 
 export default Section;
+
